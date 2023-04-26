@@ -1,0 +1,20 @@
+Map<dynamic, dynamic> languages = {
+  'en': {
+    'APP_discover': 'Discover',
+    'APP_new': 'New',
+    'APP_featured': 'Featured',
+    'APP_upcoming': 'Upcoming',
+    'APP_more': 'More',
+    'APP_more_details': 'More details',
+    'APP_size': 'Size',
+    'APP_uk': 'UK',
+    'APP_usa': 'USA',
+    'APP_try_it': 'Try it',
+    'APP_add_to_bag': 'ADD TO BAG',
+    'APP_my_bag': 'My Bag',
+    'APP_total': 'Total',
+    'APP_items': 'items',
+    'APP_next': 'Next',
+    'APP_bag_is_empty': 'Bag is empty',
+  },
+};
