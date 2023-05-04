@@ -145,7 +145,7 @@ class _ProductsList extends StatelessWidget {
           children: [
             SizedBox(height: 20.w),
             ...products.reversed.map(
-              (Product item) => _ProductItem(p: item),
+              (Product item) => _ProductItem(key: ValueKey(item.id), p: item),
             ),
           ],
         ),
@@ -208,9 +208,9 @@ class _ProductItemState extends State<_ProductItem>
       _productWithoutAnimation();
     }
 
-    if (widget.p.cart!.quantity == 0) {
-      hide = true;
-    }
+    // if (widget.p.cart!.quantity == 0) {
+    //   hide = true;
+    // }
 
     Future.delayed(const Duration(milliseconds: 1200))
         .then((value) => provider.resetLasts());
@@ -274,7 +274,7 @@ class _ProductItemState extends State<_ProductItem>
 
   @override
   Widget build(BuildContext context) {
-    if (hide) return const SizedBox();
+    // if (hide) return const SizedBox();
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: _height,
@@ -371,7 +371,13 @@ class _ProductItemState extends State<_ProductItem>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        if (widget.p.cart!.quantity == 1) {
+                          _productAnimationReverse();
+                          await Future.delayed(
+                              const Duration(milliseconds: 1150));
+                        }
+
                         context
                             .read<CheckoutProvider>()
                             .decreaseQuantityProduct(widget.p);

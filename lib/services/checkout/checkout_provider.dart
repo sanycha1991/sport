@@ -55,7 +55,12 @@ class CheckoutProvider extends ChangeNotifier {
           .firstWhere((e) => e.id == product.id, orElse: null)
           .cart as Cart;
 
-      cart.quantity--;
+      if (cart.quantity == 1) {
+        addLastRemoved(product);
+        checkoutProducts.removeWhere((e) => e.id == product.id);
+      } else {
+        cart.quantity--;
+      }
 
       updateState();
     } catch (e) {}
